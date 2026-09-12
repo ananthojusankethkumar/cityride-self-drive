@@ -164,7 +164,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'City Ride <bookings@updates.cityride.com>',
+        from: 'City Ride <onboarding@resend.dev>',
         to: [customerEmail],
         subject: `Booking Confirmed! ${bookingId} — ${carName} | City Ride`,
         html
