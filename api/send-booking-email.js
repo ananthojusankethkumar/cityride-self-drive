@@ -139,7 +139,8 @@ export default async function handler(req, res) {
 
       <!-- Note -->
       <div class="note">
-        📍 Please arrive at <strong>${pickupLocation}</strong> with your driving license and this booking reference. Our team will be ready for you!
+        📍 Please arrive at <strong>${pickupLocation}</strong> with your driving license and this booking reference. Our team will be ready for you!<br/><br/>
+        💰 <strong>Payment is due at the time of car handover.</strong> Please carry cash or UPI for the total amount of ₹${Number(totalPrice).toFixed(2)}.
       </div>
     </div>
 

@@ -19,7 +19,8 @@ export default function AdminDashboard() {
     customers,
     setAdminTab,
     setIsAddCarModalOpen,
-    updateBookingStatus
+    updateBookingStatus,
+    acceptBooking
   } = useApp();
 
   // Metrics Calculation
@@ -238,6 +239,15 @@ export default function AdminDashboard() {
                       </span>
                     </td>
                     <td>
+                      {b.status === 'Pending' && (
+                        <button
+                          className="btn-primary btn-sm"
+                          style={{ background: '#10b981' }}
+                          onClick={() => acceptBooking(b.id)}
+                        >
+                          Accept
+                        </button>
+                      )}
                       {b.status === 'Confirmed' && (
                         <button
                           className="btn-primary btn-sm"

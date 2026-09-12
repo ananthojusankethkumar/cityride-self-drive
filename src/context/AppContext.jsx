@@ -180,7 +180,7 @@ export const AppProvider = ({ children }) => {
     const newBooking = {
       ...bookingData,
       id: bookingId,
-      status: 'Confirmed',
+      status: 'Pending',
       createdAt,
       createdAtTimestamp: serverTimestamp()
     };
@@ -243,6 +243,42 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  // Accept pending booking → Confirmed + send email
+  const acceptBooking = async (bookingId) => {
+    try {
+      const booking = bookings.find(b => b.id === bookingId);
+      await updateDoc(doc(db, 'bookings', bookingId), { status: 'Confirmed' });
+      showToast(`Booking ${bookingId} accepted!`, 'success');
+      if (booking) {
+        fetch('/api/send-booking-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customerName: booking.customerName,
+            customerEmail: booking.customerEmail,
+            customerPhone: booking.customerPhone,
+            licenseNumber: booking.licenseNumber,
+            carName: booking.carName,
+            bookingId: booking.id,
+            startDate: booking.startDate,
+            endDate: booking.endDate,
+            pickupLocation: booking.pickupLocation,
+            rentalMode: booking.rentalMode || 'days',
+            hours: booking.hours || 0,
+            days: booking.days || 1,
+            carRate: booking.carRate || (booking.totalPrice - 25.76),
+            processingFee: 25.76,
+            totalPrice: booking.totalPrice,
+            durationLabel: booking.durationLabel || ''
+          })
+        }).catch(err => console.error('Email failed:', err));
+      }
+    } catch (e) {
+      console.error(e);
+      showToast('Failed to accept booking.', 'error');
+    }
+  };
+
   const cancelBooking = (bookingId) => updateBookingStatus(bookingId, 'Cancelled');
 
   const resetAllData = async () => {
@@ -277,6 +313,7 @@ export const AppProvider = ({ children }) => {
         bookings,
         createBooking,
         updateBookingStatus,
+        acceptBooking,
         cancelBooking,
         customers,
         loading,
