@@ -61,7 +61,7 @@ export default function BookingModal() {
         return;
       }
 
-      const booking = createBooking({
+      const booking = await createBooking({
         carId: selectedCarForBooking.id,
         carName: selectedCarForBooking.name,
         carImage: selectedCarForBooking.image,
@@ -75,8 +75,34 @@ export default function BookingModal() {
         totalPrice
       });
 
-      setCreatedTicket(booking);
-      setStep(3);
+      if (booking) {
+        // Send confirmation email via Vercel serverless function
+        fetch('/api/send-booking-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customerName,
+            customerEmail,
+            customerPhone: customerPhone || '+91 00000 00000',
+            licenseNumber,
+            carName: selectedCarForBooking.name,
+            bookingId: booking.id,
+            startDate,
+            endDate: rentalMode === 'hours' ? startDate : endDate,
+            pickupLocation,
+            rentalMode,
+            hours,
+            days,
+            carRate,
+            processingFee,
+            totalPrice: totalPrice.toFixed(2),
+            durationLabel
+          })
+        }).catch(err => console.error('Email send failed:', err));
+
+        setCreatedTicket(booking);
+        setStep(3);
+      }
     }
   };
 
