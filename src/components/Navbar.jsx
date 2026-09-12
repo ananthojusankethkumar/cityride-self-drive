@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { User, Moon, Sun } from 'lucide-react';
+import { User, Moon, Sun, Settings } from 'lucide-react';
 
 export default function Navbar() {
   const {
@@ -41,6 +41,16 @@ export default function Navbar() {
             title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+
+          {/* Admin access — subtle icon, no label */}
+          <button
+            className="icon-btn"
+            onClick={() => navigateToPanel('admin')}
+            title="Admin"
+            style={{ opacity: 0.4 }}
+          >
+            <Settings size={16} />
           </button>
         </div>
       </div>
