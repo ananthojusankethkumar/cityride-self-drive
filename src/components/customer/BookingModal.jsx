@@ -51,7 +51,7 @@ export default function BookingModal() {
   const processingFee = 25.76;
   const totalPrice = carRate + processingFee;
 
-  const handleNextStep = (e) => {
+  const handleNextStep = async (e) => {
     e.preventDefault();
     if (step === 1) {
       setStep(2);
