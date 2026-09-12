@@ -415,7 +415,7 @@ export default function BookingModal() {
                 <CheckCircle2 size={36} />
               </div>
 
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 800 }}>Self-Drive Pass Ready!</h3>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 800 }}>Booking Confirmed!</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem' }}>
                 Your reservation key code has been sent to <strong>{createdTicket.customerEmail}</strong>.
               </p>

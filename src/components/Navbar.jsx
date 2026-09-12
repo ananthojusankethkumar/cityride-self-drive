@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { Zap, User, Moon, Sun, Ticket } from 'lucide-react';
+import { User, Moon, Sun } from 'lucide-react';
 
 export default function Navbar() {
   const {
@@ -8,22 +8,18 @@ export default function Navbar() {
     navigateToPanel,
     theme,
     toggleTheme,
-    bookings,
-    setIsMyBookingsOpen
   } = useApp();
-
-  const activeCustomerBookings = bookings.filter(
-    b => b.status === 'Confirmed' || b.status === 'Active'
-  ).length;
 
   return (
     <header className="navbar">
       <div className="container navbar-container">
         {/* Brand Logo */}
         <a href="/" className="brand-logo" onClick={(e) => { e.preventDefault(); navigateToPanel('customer'); }}>
-          <div className="brand-icon">
-            <Zap size={26} fill="white" />
-          </div>
+          <img
+            src="/logo.png"
+            alt="City Ride"
+            style={{ height: '42px', width: '42px', borderRadius: '8px', objectFit: 'cover' }}
+          />
           <div className="brand-text">
             City<span>Ride</span>
           </div>
@@ -37,21 +33,8 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Actions (My Bookings, Theme Toggle, Reset Data) */}
+        {/* Actions */}
         <div className="nav-actions">
-          {activePanel === 'customer' && (
-            <button
-              className="icon-btn"
-              onClick={() => setIsMyBookingsOpen(true)}
-              title="My Self-Drive Passes & Trips"
-            >
-              <Ticket size={20} />
-              {activeCustomerBookings > 0 && (
-                <span className="badge-count">{activeCustomerBookings}</span>
-              )}
-            </button>
-          )}
-
           <button
             className="icon-btn"
             onClick={toggleTheme}
@@ -59,7 +42,6 @@ export default function Navbar() {
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-
         </div>
       </div>
     </header>

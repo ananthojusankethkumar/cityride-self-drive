@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Calendar, Search, Flame } from 'lucide-react';
+import { MapPin, Calendar, Search } from 'lucide-react';
 
 export default function CustomerHero({
   searchQuery,
@@ -15,16 +15,9 @@ export default function CustomerHero({
     <section className="hero-section">
       <div className="container">
         <div className="hero-content">
-          <div className="hero-pill">
-            <Flame size={16} />
-            <span>India's #1 Sporty Self-Drive Experience</span>
-          </div>
           <h1 className="hero-title">
-            Drive the Thrill with <span>CityRide</span> Self-Drive
+            Welcome to <span>City Ride</span>
           </h1>
-          <p className="hero-subtitle">
-            Unleash 4x4 Thar off-roaders, electric Nexon EVs, and luxury BMWs across major Indian metro hubs. Unlimited KMs & zero paper documentation!
-          </p>
         </div>
 
         {/* Search Card */}

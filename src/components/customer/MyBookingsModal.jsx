@@ -31,7 +31,7 @@ export default function MyBookingsModal() {
         <div className="modal-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Ticket size={22} className="text-indigo-400" />
-            <h2 className="modal-title">My Self-Drive Trips & Passes</h2>
+            <h2 className="modal-title">My Bookings</h2>
           </div>
           <button className="modal-close" onClick={() => setIsMyBookingsOpen(false)}>
             <X size={20} />
@@ -133,7 +133,7 @@ export default function MyBookingsModal() {
               <AlertCircle size={40} style={{ color: 'var(--text-muted)', marginBottom: '0.5rem' }} />
               <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>No Active Trips Found</h3>
               <p style={{ color: 'var(--text-secondary)' }}>
-                You haven't booked any vehicles yet. Explore our fleet and book your self-drive ride today!
+                You haven't booked any vehicles yet. Explore our fleet and book your ride today!
               </p>
             </div>
           )}

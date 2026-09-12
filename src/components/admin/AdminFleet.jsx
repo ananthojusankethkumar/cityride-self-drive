@@ -41,7 +41,7 @@ export default function AdminFleet() {
         <div>
           <h2 style={{ fontSize: '1.75rem', fontWeight: 800 }}>Fleet Management</h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-            Add, update operational status, or retire vehicles from your self-drive fleet.
+            Add, update operational status, or retire vehicles from your fleet.
           </p>
         </div>
 
